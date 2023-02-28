@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import React, { useContext, useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { Employee } from "./Employee"
 import { EmployeeContext } from "./EmployeeProvider"
 
@@ -21,10 +21,9 @@ export const EmployeeList = () => {
         Add Employee
       </button>
             {
-                employees.map(employee => {
-                    return <Employee 
-                    employee={employee} />
-                })
+                employees.map(employee => <div key={`employeeList--${employee.id}`}>
+                    <Link to={`/employees/detail/${employee.id}`}>{employee.name}
+                </Link></div>)
             }
         </section>
     )
