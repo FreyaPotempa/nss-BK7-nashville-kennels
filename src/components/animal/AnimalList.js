@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { AnimalContext } from "./AnimalProvider"
 import "./Animal.css"
 import { Animal } from "./Animal"
@@ -8,13 +8,22 @@ export const AnimalList = () => {
   const navigate = useNavigate()
 
   // This state changes when `getAnimals()` is invoked below
-  const { animals, getAnimals } = useContext(AnimalContext)
+  const { animals, getAnimals, searchTerms } = useContext(AnimalContext)
+  const [filteredAnimals, setFiltered ] = useState([])
 
   //useEffect - reach out to the world for something
   useEffect(() => {
     getAnimals()
   }, [])
 
+  useEffect(() => {
+    if (searchTerms !== "") {
+      const subset = animals.filter(animal => animal.name.toLowerCase().includes(searchTerms))
+      setFiltered(subset)
+    } else {
+      setFiltered(animals)
+    }
+  },[searchTerms, animals])
 
   return (
     <section className="animals">
@@ -26,7 +35,7 @@ export const AnimalList = () => {
       </button>
       <div className="animals">
       {
-        animals.map(animal => <div key={`animalList--${animal.id}`}>
+        filteredAnimals.map(animal => <div key={`animalList--${animal.id}`}>
           <Link to={`/animals/detail/${animal.id}`}>
           {animal.name}
         </Link></div>
