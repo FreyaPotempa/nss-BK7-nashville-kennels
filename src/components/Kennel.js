@@ -15,7 +15,7 @@ export const Kennel = () => {
                 <Authorized>
                     <>
                         <NavBar />
-                        <h2>Nashville Kennels</h2>
+                        <h2 className="text-brown-500 text-3xl mt-4">Nashville Kennels</h2>
                         <ApplicationViews />
                     </>
             </Authorized>

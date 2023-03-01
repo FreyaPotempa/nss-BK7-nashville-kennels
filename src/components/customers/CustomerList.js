@@ -11,11 +11,11 @@ export const CustomerList = () => {
     }, [])
 
     return (
-        <section className="customers">
+        <section className="customers flex flex-col m-4">
             <h2>Customers</h2>
             {
                 customers.map(customer => {
-                    return <Customer
+                    return <Customer key={`customerList--${customer.id}`}
                     customer={customer} />
                 })
             }

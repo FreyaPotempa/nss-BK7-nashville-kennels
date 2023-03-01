@@ -25,9 +25,6 @@ export const AnimalDetail = () => {
 
 
     },[])
-
-    console.log(animalId)
-    console.log(animal)
     
     const handleRelease = () => {
         releaseAnimal(animal.id)
@@ -52,7 +49,7 @@ export const AnimalDetail = () => {
             <button onClick={() => { 
     navigate(`/animals/edit/${animal.id}`)
 }}>Edit</button>
-<button onClick={handleRelease}>Release Animal</button>
+<button className="btn" onClick={handleRelease}>Release Animal</button>
 
         </section>
     )

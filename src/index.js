@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Kennel } from './components/Kennel';
 import { reportWebVitals } from './reportWebVitals.js'
+import "./index.css"
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
