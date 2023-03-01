@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { useParams, useSearchParams, createSearchParams, useNavigate } from "react-router-dom"
+import { useParams, useSearchParams, createSearchParams, useNavigate, Await } from "react-router-dom"
 import { AnimalContext } from "./AnimalProvider"
 
 
@@ -7,7 +7,7 @@ import { AnimalContext } from "./AnimalProvider"
 
 export const AnimalDetail = () => {
     const navigate = useNavigate()
-    const { animals, releaseAnimal } = useContext(AnimalContext)
+    const { animals, releaseAnimal, getAnimalById } = useContext(AnimalContext)
     const { animalId } = useParams()
    //Feel like this is close to working. It does amend the url but it does not hold current state
    //https://www.peterbe.com/plog/usesearchparams-react-global-state-manager
@@ -18,14 +18,16 @@ export const AnimalDetail = () => {
 
         
     useEffect(() => {
-            const thisAnimal = animals?.find(a => a.id === parseInt(animalId))
-            setAnimal(thisAnimal)
+            getAnimalById(animalId)
+            .then(currentAnimal => {
+                setAnimal(currentAnimal)
+            })
 
 
     },[])
 
     console.log(animalId)
-    console.log(animals)
+    console.log(animal)
     
     const handleRelease = () => {
         releaseAnimal(animal.id)
@@ -39,7 +41,6 @@ export const AnimalDetail = () => {
     // },[animalId, animals])
 
     if (animals.length === 0 ) {
-        return null
     }
     return (
      
@@ -48,7 +49,7 @@ export const AnimalDetail = () => {
             <div className="animal__breed">{animal?.breed}</div>
             <div className="animal__location">Location:{animal?.location?.name}</div>
             <div className="animal__owner">Customer: {animal?.customer?.name}</div>
-            <button onClick={() => {
+            <button onClick={() => { 
     navigate(`/animals/edit/${animal.id}`)
 }}>Edit</button>
 <button onClick={handleRelease}>Release Animal</button>
