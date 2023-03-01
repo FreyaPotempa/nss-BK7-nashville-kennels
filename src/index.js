@@ -1,17 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { Kennel } from './components/Kennel';
-import { reportWebVitals } from './reportWebVitals.js'
-import "./index.css"
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { Kennel } from "./components/Kennel";
+import { reportWebVitals } from "./reportWebVitals.js";
+import "./index.css";
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-<BrowserRouter>
-<Kennel />
-</BrowserRouter>
+  <BrowserRouter>
+    <Kennel />
+  </BrowserRouter>
 );
 
 // import './index.css';

@@ -1,4 +1,3 @@
-
 // export const Animal = ({ animal }) => {
 
 //     return <>
@@ -10,6 +9,6 @@
 //                 Breed: { animal.breed }
 //               </div>
 //             </div>
-    
+
 //     </>
 // }
